@@ -1,0 +1,19 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "chris.clark@actian.com",
+    "longName": "outline_font",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "outline_font",
+    "uuid": "76c4e0c1-1f5e-4c2e-8c54-7aa205a6d2cf",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}

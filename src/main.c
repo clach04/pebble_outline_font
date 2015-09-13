@@ -10,17 +10,21 @@ char lorem[64];
 
 void graphics_draw_text_with_outline(GContext * ctx, const char * text, GFont const font, const GRect box, const GTextOverflowMode overflow_mode, const GTextAlignment alignment, const GTextLayoutCacheRef layout, GColor outline_color, GColor inside_color)
 {
+#define OUTLINE_WIDTH (1)  // larger size, looks worse with small font pitch
+#define OUTLINE_OFFSET (OUTLINE_WIDTH + 1)
+//#define OUTLINE_OFFSET (OUTLINE_WIDTH * 2)  // as OUTLINE_WIDTH gets larger, outline look more like a shadow with a direction which this helps correct
+
     graphics_context_set_text_color(ctx, outline_color);
     graphics_draw_text(ctx, text, font, GRect(box.origin.x,box.origin.y, box.size.w,box.size.h), overflow_mode, alignment, layout);
 
-    graphics_draw_text(ctx, text, font, GRect(box.origin.x+2,box.origin.y, box.size.w,box.size.h), overflow_mode, alignment, layout);
+    graphics_draw_text(ctx, text, font, GRect(box.origin.x+OUTLINE_OFFSET,box.origin.y, box.size.w,box.size.h), overflow_mode, alignment, layout);
 
-    graphics_draw_text(ctx, text, font, GRect(box.origin.x,box.origin.y+2, box.size.w,box.size.h), overflow_mode, alignment, layout);
+    graphics_draw_text(ctx, text, font, GRect(box.origin.x,box.origin.y+OUTLINE_OFFSET, box.size.w,box.size.h), overflow_mode, alignment, layout);
 
-    graphics_draw_text(ctx, text, font, GRect(box.origin.x+2,box.origin.y+2, box.size.w,box.size.h), overflow_mode, alignment, layout);
+    graphics_draw_text(ctx, text, font, GRect(box.origin.x+OUTLINE_OFFSET,box.origin.y+OUTLINE_OFFSET, box.size.w,box.size.h), overflow_mode, alignment, layout);
 
     graphics_context_set_text_color(ctx, inside_color);
-    graphics_draw_text(ctx, text, font, GRect(box.origin.x+1,box.origin.y+1, box.size.w,box.size.h), overflow_mode, alignment, layout);
+    graphics_draw_text(ctx, text, font, GRect(box.origin.x+OUTLINE_WIDTH,box.origin.y+OUTLINE_WIDTH, box.size.w,box.size.h), overflow_mode, alignment, layout);
 }
 
 void draw_custom(Layer *this_layer, GContext *ctx){

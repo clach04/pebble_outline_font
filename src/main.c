@@ -8,31 +8,31 @@ Window *my_window;
 Layer *text_layer;
 char lorem[64];
 
-void draw_text(GContext *ctx, char * the_text, GFont the_font, int16_t x, int16_t y, int16_t w, int16_t h)
+void draw_text(GContext *ctx, char * the_text, GFont the_font, int16_t x, int16_t y, int16_t w, int16_t h, const GTextOverflowMode overflow_mode, const GTextAlignment alignment, const GTextLayoutCacheRef layout)
 {
     graphics_context_set_text_color(ctx, GColorBlack);
-    graphics_draw_text(ctx, the_text, the_font, GRect(x,y, w,h), GTextOverflowModeFill, GTextAlignmentLeft, NULL);
+    graphics_draw_text(ctx, the_text, the_font, GRect(x,y, w,h), overflow_mode, alignment, layout);
 
-    graphics_draw_text(ctx, the_text, the_font, GRect(x+2,y, w,h), GTextOverflowModeFill, GTextAlignmentLeft, NULL);
+    graphics_draw_text(ctx, the_text, the_font, GRect(x+2,y, w,h), overflow_mode, alignment, layout);
 
-    graphics_draw_text(ctx, the_text, the_font, GRect(x,y+2, w,h), GTextOverflowModeFill, GTextAlignmentLeft, NULL);
+    graphics_draw_text(ctx, the_text, the_font, GRect(x,y+2, w,h), overflow_mode, alignment, layout);
 
-    graphics_draw_text(ctx, the_text, the_font, GRect(x+2,y+2, w,h), GTextOverflowModeFill, GTextAlignmentLeft, NULL);
+    graphics_draw_text(ctx, the_text, the_font, GRect(x+2,y+2, w,h), overflow_mode, alignment, layout);
 
     graphics_context_set_text_color(ctx, GColorWhite);
-    graphics_draw_text(ctx, the_text, the_font, GRect(x+1,y+1, w,h), GTextOverflowModeFill, GTextAlignmentLeft, NULL);
+    graphics_draw_text(ctx, the_text, the_font, GRect(x+1,y+1, w,h), overflow_mode, alignment, layout);
 }
 
 void draw_custom(Layer *this_layer, GContext *ctx){
-    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_14), 1,1, 144,32);
+    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_14), 1,1, 144,32, GTextOverflowModeFill, GTextAlignmentLeft, NULL);
 
-    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD), 1,31, 144,32);
+    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD), 1,31, 144,32, GTextOverflowModeFill, GTextAlignmentLeft, NULL);
 
-    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_28), 1,61, 144,32);
+    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_28), 1,61, 144,32, GTextOverflowModeFill, GTextAlignmentLeft, NULL);
 
-    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD), 1,91, 144,32);
+    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD), 1,91, 144,32, GTextOverflowModeFill, GTextAlignmentLeft, NULL);
 
-    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK), 1,121, 144,32);
+    draw_text(ctx, lorem, fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK), 1,121, 144,32, GTextOverflowModeFill, GTextAlignmentLeft, NULL);
 }
 
 void handle_init(void) {
